@@ -3694,7 +3694,9 @@ static PyObject *__pyx_pf_3ctr_4_ctr_4least_squares(CYTHON_UNUSED PyObject *__py
                     __pyx_gilstate_save = PyGILState_Ensure();
                     #endif
                     __Pyx_PyThreadState_assign
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -3702,9 +3704,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_4least_squares(CYTHON_UNUSED PyObject *__py
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_40, &__pyx_t_41, &__pyx_t_42);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_37, &__pyx_t_38, &__pyx_t_39) < 0)) __Pyx_ErrFetch(&__pyx_t_37, &__pyx_t_38, &__pyx_t_39);
                     __Pyx_XGOTREF(__pyx_t_37);
@@ -4775,7 +4775,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_6least_squares(CYTHON_UNUSED PyObject *__py
                     #endif
                     __Pyx_PyThreadState_assign
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4783,7 +4783,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_6least_squares(CYTHON_UNUSED PyObject *__py
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_36, &__pyx_t_37, &__pyx_t_38) < 0)) __Pyx_ErrFetch(&__pyx_t_36, &__pyx_t_37, &__pyx_t_38);
                     __Pyx_XGOTREF(__pyx_t_36);
@@ -5765,10 +5765,10 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
   Py_ssize_t __pyx_t_24;
   Py_ssize_t __pyx_t_25;
   Py_ssize_t __pyx_t_26;
-  Py_ssize_t __pyx_t_27;
-  Py_ssize_t __pyx_t_28;
-  int __pyx_t_29;
-  int __pyx_t_30;
+  int __pyx_t_27;
+  int __pyx_t_28;
+  Py_ssize_t __pyx_t_29;
+  Py_ssize_t __pyx_t_30;
   Py_ssize_t __pyx_t_31;
   Py_ssize_t __pyx_t_32;
   Py_ssize_t __pyx_t_33;
@@ -6204,7 +6204,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
  *                   # Pui is implicit, its defined to be 1 for non-zero entries
  *                   axpy(&factors, &confidence, &Y[i, 0], &one, b, &one)             # <<<<<<<<<<<<<<
  * 
- *                   # b += topics_regularization * theta[i]
+ *                   # A += Yi^T Cui Yi
  */
                                     __pyx_t_25 = __pyx_v_i;
                                     __pyx_t_26 = 0;
@@ -6212,60 +6212,60 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
                                     if (__pyx_t_26 < 0) __pyx_t_26 += __pyx_v_Y.shape[1];
                                     __pyx_fuse_0__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_confidence), (&(*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_25 * __pyx_v_Y.strides[0]) ) + __pyx_t_26 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
 
-                                    /* "ctr/_ctr.pyx":141
- * 
- *                   # b += topics_regularization * theta[i]
- *                   axpy(&factors, &floating_one, &regularizedTheta[i, 0], &one, b, &one)             # <<<<<<<<<<<<<<
- * 
- *                   # A += Yi^T Cui Yi
- */
-                                    __pyx_t_27 = __pyx_v_i;
-                                    __pyx_t_28 = 0;
-                                    if (__pyx_t_27 < 0) __pyx_t_27 += __pyx_v_regularizedTheta.shape[0];
-                                    if (__pyx_t_28 < 0) __pyx_t_28 += __pyx_v_regularizedTheta.shape[1];
-                                    __pyx_fuse_0__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_floating_one), (&(*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_regularizedTheta.data + __pyx_t_27 * __pyx_v_regularizedTheta.strides[0]) ) + __pyx_t_28 * __pyx_v_regularizedTheta.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
-
-                                    /* "ctr/_ctr.pyx":145
+                                    /* "ctr/_ctr.pyx":142
  *                   # A += Yi^T Cui Yi
  *                   # Since we've already added in YtY, we subtract 1 from confidence
  *                   for j in range(factors):             # <<<<<<<<<<<<<<
  *                       temp = (confidence - 1) * Y[i, j]
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
  */
-                                    __pyx_t_29 = __pyx_v_factors;
-                                    for (__pyx_t_30 = 0; __pyx_t_30 < __pyx_t_29; __pyx_t_30+=1) {
-                                      __pyx_v_j = __pyx_t_30;
+                                    __pyx_t_27 = __pyx_v_factors;
+                                    for (__pyx_t_28 = 0; __pyx_t_28 < __pyx_t_27; __pyx_t_28+=1) {
+                                      __pyx_v_j = __pyx_t_28;
 
-                                      /* "ctr/_ctr.pyx":146
+                                      /* "ctr/_ctr.pyx":143
  *                   # Since we've already added in YtY, we subtract 1 from confidence
  *                   for j in range(factors):
  *                       temp = (confidence - 1) * Y[i, j]             # <<<<<<<<<<<<<<
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
  * 
  */
-                                      __pyx_t_31 = __pyx_v_i;
-                                      __pyx_t_32 = __pyx_v_j;
-                                      if (__pyx_t_31 < 0) __pyx_t_31 += __pyx_v_Y.shape[0];
-                                      if (__pyx_t_32 < 0) __pyx_t_32 += __pyx_v_Y.shape[1];
-                                      __pyx_v_temp = ((__pyx_v_confidence - 1.0) * (*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_31 * __pyx_v_Y.strides[0]) ) + __pyx_t_32 * __pyx_v_Y.strides[1]) ))));
+                                      __pyx_t_29 = __pyx_v_i;
+                                      __pyx_t_30 = __pyx_v_j;
+                                      if (__pyx_t_29 < 0) __pyx_t_29 += __pyx_v_Y.shape[0];
+                                      if (__pyx_t_30 < 0) __pyx_t_30 += __pyx_v_Y.shape[1];
+                                      __pyx_v_temp = ((__pyx_v_confidence - 1.0) * (*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_29 * __pyx_v_Y.strides[0]) ) + __pyx_t_30 * __pyx_v_Y.strides[1]) ))));
 
-                                      /* "ctr/_ctr.pyx":147
+                                      /* "ctr/_ctr.pyx":144
  *                   for j in range(factors):
  *                       temp = (confidence - 1) * Y[i, j]
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)             # <<<<<<<<<<<<<<
  * 
- *               posv("U", &factors, &one, A, &factors, b, &factors, &err);
+ *               # b += topics_regularization * theta[u]
  */
-                                      __pyx_t_33 = __pyx_v_i;
-                                      __pyx_t_34 = 0;
-                                      if (__pyx_t_33 < 0) __pyx_t_33 += __pyx_v_Y.shape[0];
-                                      if (__pyx_t_34 < 0) __pyx_t_34 += __pyx_v_Y.shape[1];
-                                      __pyx_fuse_0__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_temp), (&(*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_33 * __pyx_v_Y.strides[0]) ) + __pyx_t_34 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), (__pyx_v_A + (__pyx_v_j * __pyx_v_factors)), (&__pyx_v_one));
+                                      __pyx_t_31 = __pyx_v_i;
+                                      __pyx_t_32 = 0;
+                                      if (__pyx_t_31 < 0) __pyx_t_31 += __pyx_v_Y.shape[0];
+                                      if (__pyx_t_32 < 0) __pyx_t_32 += __pyx_v_Y.shape[1];
+                                      __pyx_fuse_0__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_temp), (&(*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_31 * __pyx_v_Y.strides[0]) ) + __pyx_t_32 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), (__pyx_v_A + (__pyx_v_j * __pyx_v_factors)), (&__pyx_v_one));
                                     }
                                   }
 
+                                  /* "ctr/_ctr.pyx":147
+ * 
+ *               # b += topics_regularization * theta[u]
+ *               axpy(&factors, &floating_one, &regularizedTheta[u, 0], &one, b, &one)             # <<<<<<<<<<<<<<
+ * 
+ *               posv("U", &factors, &one, A, &factors, b, &factors, &err);
+ */
+                                  __pyx_t_33 = __pyx_v_u;
+                                  __pyx_t_34 = 0;
+                                  if (__pyx_t_33 < 0) __pyx_t_33 += __pyx_v_regularizedTheta.shape[0];
+                                  if (__pyx_t_34 < 0) __pyx_t_34 += __pyx_v_regularizedTheta.shape[1];
+                                  __pyx_fuse_0__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_floating_one), (&(*((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_regularizedTheta.data + __pyx_t_33 * __pyx_v_regularizedTheta.strides[0]) ) + __pyx_t_34 * __pyx_v_regularizedTheta.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
+
                                   /* "ctr/_ctr.pyx":149
- *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
+ *               axpy(&factors, &floating_one, &regularizedTheta[u, 0], &one, b, &one)
  * 
  *               posv("U", &factors, &one, A, &factors, b, &factors, &err);             # <<<<<<<<<<<<<<
  * 
@@ -6508,7 +6508,9 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
                     __pyx_gilstate_save = PyGILState_Ensure();
                     #endif
                     __Pyx_PyThreadState_assign
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -6516,9 +6518,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_42, &__pyx_t_43, &__pyx_t_44);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41) < 0)) __Pyx_ErrFetch(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41);
                     __Pyx_XGOTREF(__pyx_t_39);
@@ -6874,10 +6874,10 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
   Py_ssize_t __pyx_t_23;
   Py_ssize_t __pyx_t_24;
   Py_ssize_t __pyx_t_25;
-  Py_ssize_t __pyx_t_26;
-  Py_ssize_t __pyx_t_27;
-  int __pyx_t_28;
-  int __pyx_t_29;
+  int __pyx_t_26;
+  int __pyx_t_27;
+  Py_ssize_t __pyx_t_28;
+  Py_ssize_t __pyx_t_29;
   Py_ssize_t __pyx_t_30;
   Py_ssize_t __pyx_t_31;
   Py_ssize_t __pyx_t_32;
@@ -7313,7 +7313,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
  *                   # Pui is implicit, its defined to be 1 for non-zero entries
  *                   axpy(&factors, &confidence, &Y[i, 0], &one, b, &one)             # <<<<<<<<<<<<<<
  * 
- *                   # b += topics_regularization * theta[i]
+ *                   # A += Yi^T Cui Yi
  */
                                     __pyx_t_24 = __pyx_v_i;
                                     __pyx_t_25 = 0;
@@ -7321,60 +7321,60 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
                                     if (__pyx_t_25 < 0) __pyx_t_25 += __pyx_v_Y.shape[1];
                                     __pyx_fuse_1__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_confidence), (&(*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_24 * __pyx_v_Y.strides[0]) ) + __pyx_t_25 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
 
-                                    /* "ctr/_ctr.pyx":141
- * 
- *                   # b += topics_regularization * theta[i]
- *                   axpy(&factors, &floating_one, &regularizedTheta[i, 0], &one, b, &one)             # <<<<<<<<<<<<<<
- * 
- *                   # A += Yi^T Cui Yi
- */
-                                    __pyx_t_26 = __pyx_v_i;
-                                    __pyx_t_27 = 0;
-                                    if (__pyx_t_26 < 0) __pyx_t_26 += __pyx_v_regularizedTheta.shape[0];
-                                    if (__pyx_t_27 < 0) __pyx_t_27 += __pyx_v_regularizedTheta.shape[1];
-                                    __pyx_fuse_1__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_floating_one), (&(*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_regularizedTheta.data + __pyx_t_26 * __pyx_v_regularizedTheta.strides[0]) ) + __pyx_t_27 * __pyx_v_regularizedTheta.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
-
-                                    /* "ctr/_ctr.pyx":145
+                                    /* "ctr/_ctr.pyx":142
  *                   # A += Yi^T Cui Yi
  *                   # Since we've already added in YtY, we subtract 1 from confidence
  *                   for j in range(factors):             # <<<<<<<<<<<<<<
  *                       temp = (confidence - 1) * Y[i, j]
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
  */
-                                    __pyx_t_28 = __pyx_v_factors;
-                                    for (__pyx_t_29 = 0; __pyx_t_29 < __pyx_t_28; __pyx_t_29+=1) {
-                                      __pyx_v_j = __pyx_t_29;
+                                    __pyx_t_26 = __pyx_v_factors;
+                                    for (__pyx_t_27 = 0; __pyx_t_27 < __pyx_t_26; __pyx_t_27+=1) {
+                                      __pyx_v_j = __pyx_t_27;
 
-                                      /* "ctr/_ctr.pyx":146
+                                      /* "ctr/_ctr.pyx":143
  *                   # Since we've already added in YtY, we subtract 1 from confidence
  *                   for j in range(factors):
  *                       temp = (confidence - 1) * Y[i, j]             # <<<<<<<<<<<<<<
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
  * 
  */
-                                      __pyx_t_30 = __pyx_v_i;
-                                      __pyx_t_31 = __pyx_v_j;
-                                      if (__pyx_t_30 < 0) __pyx_t_30 += __pyx_v_Y.shape[0];
-                                      if (__pyx_t_31 < 0) __pyx_t_31 += __pyx_v_Y.shape[1];
-                                      __pyx_v_temp = ((__pyx_v_confidence - 1.0) * (*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_30 * __pyx_v_Y.strides[0]) ) + __pyx_t_31 * __pyx_v_Y.strides[1]) ))));
+                                      __pyx_t_28 = __pyx_v_i;
+                                      __pyx_t_29 = __pyx_v_j;
+                                      if (__pyx_t_28 < 0) __pyx_t_28 += __pyx_v_Y.shape[0];
+                                      if (__pyx_t_29 < 0) __pyx_t_29 += __pyx_v_Y.shape[1];
+                                      __pyx_v_temp = ((__pyx_v_confidence - 1.0) * (*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_28 * __pyx_v_Y.strides[0]) ) + __pyx_t_29 * __pyx_v_Y.strides[1]) ))));
 
-                                      /* "ctr/_ctr.pyx":147
+                                      /* "ctr/_ctr.pyx":144
  *                   for j in range(factors):
  *                       temp = (confidence - 1) * Y[i, j]
  *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)             # <<<<<<<<<<<<<<
  * 
- *               posv("U", &factors, &one, A, &factors, b, &factors, &err);
+ *               # b += topics_regularization * theta[u]
  */
-                                      __pyx_t_32 = __pyx_v_i;
-                                      __pyx_t_33 = 0;
-                                      if (__pyx_t_32 < 0) __pyx_t_32 += __pyx_v_Y.shape[0];
-                                      if (__pyx_t_33 < 0) __pyx_t_33 += __pyx_v_Y.shape[1];
-                                      __pyx_fuse_1__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_temp), (&(*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_32 * __pyx_v_Y.strides[0]) ) + __pyx_t_33 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), (__pyx_v_A + (__pyx_v_j * __pyx_v_factors)), (&__pyx_v_one));
+                                      __pyx_t_30 = __pyx_v_i;
+                                      __pyx_t_31 = 0;
+                                      if (__pyx_t_30 < 0) __pyx_t_30 += __pyx_v_Y.shape[0];
+                                      if (__pyx_t_31 < 0) __pyx_t_31 += __pyx_v_Y.shape[1];
+                                      __pyx_fuse_1__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_temp), (&(*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_Y.data + __pyx_t_30 * __pyx_v_Y.strides[0]) ) + __pyx_t_31 * __pyx_v_Y.strides[1]) )))), (&__pyx_v_one), (__pyx_v_A + (__pyx_v_j * __pyx_v_factors)), (&__pyx_v_one));
                                     }
                                   }
 
+                                  /* "ctr/_ctr.pyx":147
+ * 
+ *               # b += topics_regularization * theta[u]
+ *               axpy(&factors, &floating_one, &regularizedTheta[u, 0], &one, b, &one)             # <<<<<<<<<<<<<<
+ * 
+ *               posv("U", &factors, &one, A, &factors, b, &factors, &err);
+ */
+                                  __pyx_t_32 = __pyx_v_u;
+                                  __pyx_t_33 = 0;
+                                  if (__pyx_t_32 < 0) __pyx_t_32 += __pyx_v_regularizedTheta.shape[0];
+                                  if (__pyx_t_33 < 0) __pyx_t_33 += __pyx_v_regularizedTheta.shape[1];
+                                  __pyx_fuse_1__pyx_f_3ctr_4_ctr_axpy((&__pyx_v_factors), (&__pyx_v_floating_one), (&(*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_regularizedTheta.data + __pyx_t_32 * __pyx_v_regularizedTheta.strides[0]) ) + __pyx_t_33 * __pyx_v_regularizedTheta.strides[1]) )))), (&__pyx_v_one), __pyx_v_b, (&__pyx_v_one));
+
                                   /* "ctr/_ctr.pyx":149
- *                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
+ *               axpy(&factors, &floating_one, &regularizedTheta[u, 0], &one, b, &one)
  * 
  *               posv("U", &factors, &one, A, &factors, b, &factors, &err);             # <<<<<<<<<<<<<<
  * 
@@ -7618,7 +7618,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
                     #endif
                     __Pyx_PyThreadState_assign
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7626,7 +7626,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_41, &__pyx_t_42, &__pyx_t_43);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_38, &__pyx_t_39, &__pyx_t_40) < 0)) __Pyx_ErrFetch(&__pyx_t_38, &__pyx_t_39, &__pyx_t_40);
                     __Pyx_XGOTREF(__pyx_t_38);

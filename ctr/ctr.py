@@ -35,20 +35,20 @@ def alternating_least_squares(Cui, factors, regularization=0.01,
 
     X = np.random.rand(users, factors).astype(dtype) * 0.01
     Y = np.random.rand(items, factors).astype(dtype) * 0.01
-    regularized_theta = (topics_regularization * theta.T).astype(dtype) if theta is not None else None
+    regularized_theta = (topics_regularization * theta).astype(dtype) if theta is not None else None
 
     Cui, Ciu = Cui.tocsr(), Cui.T.tocsr()
 
     solver = _ctr.least_squares if use_native else least_squares
-    #topics_solver = _ctr.topics_least_squares if use_native else least_squares
+    topics_solver = _ctr.topics_least_squares if use_native else least_squares
 
     for iteration in range(iterations):
         s = time.time()
         solver(Cui, X, Y, regularization, num_threads)
-        #if theta is None:
-        solver(Ciu, Y, X, regularization, num_threads)
-        #else:
-        #    topics_solver(Ciu, Y, X, regularization, num_threads, regularized_theta)
+        if theta is None:
+            solver(Ciu, Y, X, regularization, num_threads)
+        else:
+           topics_solver(Ciu, Y, X, regularization, num_threads, regularized_theta)
         log.debug("finished iteration %i in %s", iteration, time.time() - s)
 
     return X, Y
@@ -77,7 +77,7 @@ def least_squares(Cui, X, Y, regularization, num_threads, lambda_theta=None):
             b += confidence * factor
 
         if lambda_theta is not None:
-            b += np.ravel(lambda_theta[:,u])
+            b += np.ravel(lambda_theta[u]) #np.ravel(lambda_theta[:,u])
 
         # Xu = (YtCuY + regularization * I)^-1 (YtCuPu)
         X[u] = np.linalg.solve(A, b)

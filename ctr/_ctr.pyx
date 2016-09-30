@@ -137,14 +137,14 @@ def topics_least_squares(Cui, floating [:, :] X, floating [:, :] Y, double regul
                   # Pui is implicit, its defined to be 1 for non-zero entries
                   axpy(&factors, &confidence, &Y[i, 0], &one, b, &one)
 
-                  # b += topics_regularization * theta[i]
-                  axpy(&factors, &floating_one, &regularizedTheta[i, 0], &one, b, &one)
-
                   # A += Yi^T Cui Yi
                   # Since we've already added in YtY, we subtract 1 from confidence
                   for j in range(factors):
                       temp = (confidence - 1) * Y[i, j]
                       axpy(&factors, &temp, &Y[i, 0], &one, A + j * factors, &one)
+
+              # b += topics_regularization * theta[u]
+              axpy(&factors, &floating_one, &regularizedTheta[u, 0], &one, b, &one)
 
               posv("U", &factors, &one, A, &factors, b, &factors, &err);
 
