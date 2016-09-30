@@ -3,12 +3,13 @@ import numpy as np
 import time
 import os
 import logging
-from . import _implicit
+from . import _ctr
 
-log = logging.getLogger("implicit")
+log = logging.getLogger("ctr")
 
 
 def alternating_least_squares(Cui, factors, regularization=0.01,
+                              theta=None, topics_regularization=0.01,
                               iterations=15, use_native=True, num_threads=0,
                               dtype=np.float64):
     """ factorizes the matrix Cui using an implicit alternating least squares
@@ -18,6 +19,8 @@ def alternating_least_squares(Cui, factors, regularization=0.01,
         Cui (csr_matrix): Confidence Matrix
         factors (int): Number of factors to extract
         regularization (double): Regularization parameter to use
+        theta (matrix): Topics Distribution Matrix
+        topics regularization (double): Topics regularization parameter to use
         iterations (int): Number of alternating least squares iterations to
         run
         num_threads (int): Number of threads to run least squares iterations.
@@ -32,21 +35,26 @@ def alternating_least_squares(Cui, factors, regularization=0.01,
 
     X = np.random.rand(users, factors).astype(dtype) * 0.01
     Y = np.random.rand(items, factors).astype(dtype) * 0.01
+    regularized_theta = (topics_regularization * theta.T).astype(dtype) if theta is not None else None
 
     Cui, Ciu = Cui.tocsr(), Cui.T.tocsr()
 
-    solver = _implicit.least_squares if use_native else least_squares
+    solver = _ctr.least_squares if use_native else least_squares
+    #topics_solver = _ctr.topics_least_squares if use_native else least_squares
 
     for iteration in range(iterations):
         s = time.time()
         solver(Cui, X, Y, regularization, num_threads)
+        #if theta is None:
         solver(Ciu, Y, X, regularization, num_threads)
+        #else:
+        #    topics_solver(Ciu, Y, X, regularization, num_threads, regularized_theta)
         log.debug("finished iteration %i in %s", iteration, time.time() - s)
 
     return X, Y
 
 
-def least_squares(Cui, X, Y, regularization, num_threads):
+def least_squares(Cui, X, Y, regularization, num_threads, lambda_theta=None):
     """ For each user in Cui, calculate factors Xu for them
     using least squares on Y.
 
@@ -67,6 +75,9 @@ def least_squares(Cui, X, Y, regularization, num_threads):
             factor = Y[i]
             A += (confidence - 1) * np.outer(factor, factor)
             b += confidence * factor
+
+        if lambda_theta is not None:
+            b += np.ravel(lambda_theta[:,u])
 
         # Xu = (YtCuY + regularization * I)^-1 (YtCuPu)
         X[u] = np.linalg.solve(A, b)

@@ -1,11 +1,13 @@
-Implicit [![Build Status](https://travis-ci.org/benfred/implicit.svg?branch=master)](https://travis-ci.org/benfred/implicit)
-=======
+CTR
+===
 
 Fast Python Collaborative Filtering for Implicit Datasets.
 
 This project provides a fast Python implementation of the algorithm described in the paper [Collaborative Filtering for Implicit Feedback Datasets](
 http://yifanhu.net/PUB/cf.pdf).
 
+
+TODO: CTR
 
 To install:
 
@@ -26,7 +28,7 @@ last.fm dataset](https://github.com/benfred/implicit/blob/master/examples/lastfm
 #### Requirements
 
 This library requires SciPy version 0.16 or later. Running on OSX requires an OpenMP compiler,
-which can be installed with homebrew: ```brew install gcc```. 
+which can be installed with homebrew: ```brew install gcc```.
 
 #### Why Use This?
 

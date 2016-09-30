@@ -6,9 +6,9 @@ import warnings
 
 from setuptools import Extension, setup
 
-NAME = 'implicit'
-VERSION = '0.1.3'
-SRC_ROOT = 'implicit'
+NAME = 'ctr'
+VERSION = '0.0.1.dev0'
+SRC_ROOT = 'ctr'
 
 
 
@@ -109,11 +109,11 @@ with open(os.path.join(here, 'README.md')) as f:
 setup(
     name=NAME,
     version=VERSION,
-    description='Collaborative Filtering for Implicit Datasets',
+    description='Collaborative Topic Regression for Implicit Datasets',
     long_description=long_description,
-    url='http://github.com/benfred/implicit/',
-    author='Ben Frederickson',
-    author_email='ben@benfrederickson.com',
+    url='http://github.com/jbochi',
+    author='Juarez Bochi',
+    author_email='jbochi@gmail.com',
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
