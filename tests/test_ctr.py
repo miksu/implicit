@@ -24,8 +24,6 @@ class ImplicitALSTest(unittest.TestCase):
             reconstructed = rows.dot(cols.T)
             for i in range(counts.shape[0]):
                 for j in range(counts.shape[1]):
-                    if abs(counts[i, j] - reconstructed[i, j]) > tolerance:
-                        print(counts[i, j], reconstructed[i, j])
                     self.assertTrue(abs(counts[i, j] - reconstructed[i, j]) <
                                     tolerance)
 
@@ -50,7 +48,9 @@ class ImplicitALSTest(unittest.TestCase):
 
 
     def testCTR(self):
-        regularization = 1e-9
+        regularization = 1e-6
+        small_topics_regularization = 1e-12
+        high_topics_regularization = 1e3
         tolerance = 1e-2
 
         counts = csr_matrix([[1, 1, 0, 1, 0, 0],
@@ -62,23 +62,29 @@ class ImplicitALSTest(unittest.TestCase):
                              [0, 0, 0, 0, 1, 0]], dtype=np.float64)
 
         theta = csr_matrix([[1, 1, 0, 1, 0, 0, 1],
-                            [0, 1, 1, 1, 0, 0, 1],
+                            [1, 1, 0, 1, 0, 0, 0],
                             [1, 0, 1, 0, 0, 0, 1],
-                            [1, 1, 0, 0, 0, 0, 0],
-                            [0, 0, 1, 1, 0, 0, 1],
+                            [1, 1, 0, 0, 1, 0, 0],
+                            [0, 0, 1, 1, 0, 1, 1],
                             [0, 1, 0, 0, 0, 1, 0]], dtype=np.float64).todense()
+
+        def check_matrix(reconstructed, original):
+            assert reconstructed.shape == original.shape
+            for i in range(original.shape[0]):
+                for j in range(original.shape[1]):
+                    expected = original[i, j]
+                    got = reconstructed[i, j]
+                    self.assertTrue(abs(expected - got) < tolerance,
+                        "Expected %s, got %s." % (expected, got))
 
         def check_solution(rows, cols, counts):
             reconstructed = rows.dot(cols.T)
-            for i in range(counts.shape[0]):
-                for j in range(counts.shape[1]):
-                    self.assertTrue(abs(counts[i, j] - reconstructed[i, j]) <
-                                    tolerance)
+            check_matrix(reconstructed, counts)
 
         # check cython version
         rows, cols = ctr.alternating_least_squares(counts * 2, 7,
                                                         regularization,
-                                                        topics_regularization=regularization,
+                                                        topics_regularization=small_topics_regularization,
                                                         iterations=1,
                                                         theta=theta,
                                                         use_native=True)
@@ -88,7 +94,7 @@ class ImplicitALSTest(unittest.TestCase):
         rows, cols = ctr.alternating_least_squares(counts * 2, 7,
                                                     regularization,
                                                     theta=theta,
-                                                    topics_regularization=regularization,
+                                                    topics_regularization=small_topics_regularization,
                                                     use_native=True,
                                                     dtype=np.float32)
         check_solution(rows, cols, counts.todense())
@@ -96,10 +102,19 @@ class ImplicitALSTest(unittest.TestCase):
         # try out pure python version
         rows, cols = ctr.alternating_least_squares(counts, 7,
                                                     regularization,
-                                                    topics_regularization=regularization,
+                                                    topics_regularization=small_topics_regularization,
                                                     theta=theta,
                                                     use_native=False)
         check_solution(rows, cols, counts.todense())
+
+        #### topics_regularization high
+        rows, cols = ctr.alternating_least_squares(counts, 7,
+                                                    regularization,
+                                                    topics_regularization=high_topics_regularization,
+                                                    theta=theta,
+                                                    use_native=False,
+                                                    iterations=10)
+        check_matrix(cols, theta)
 
 
 if __name__ == "__main__":

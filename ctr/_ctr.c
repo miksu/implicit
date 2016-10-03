@@ -3695,8 +3695,8 @@ static PyObject *__pyx_pf_3ctr_4_ctr_4least_squares(CYTHON_UNUSED PyObject *__py
                     #endif
                     __Pyx_PyThreadState_assign
                     __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -3704,7 +3704,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_4least_squares(CYTHON_UNUSED PyObject *__py
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_40, &__pyx_t_41, &__pyx_t_42);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_37, &__pyx_t_38, &__pyx_t_39) < 0)) __Pyx_ErrFetch(&__pyx_t_37, &__pyx_t_38, &__pyx_t_39);
                     __Pyx_XGOTREF(__pyx_t_37);
@@ -4774,8 +4774,8 @@ static PyObject *__pyx_pf_3ctr_4_ctr_6least_squares(CYTHON_UNUSED PyObject *__py
                     __pyx_gilstate_save = PyGILState_Ensure();
                     #endif
                     __Pyx_PyThreadState_assign
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4783,7 +4783,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_6least_squares(CYTHON_UNUSED PyObject *__py
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_36, &__pyx_t_37, &__pyx_t_38) < 0)) __Pyx_ErrFetch(&__pyx_t_36, &__pyx_t_37, &__pyx_t_38);
                     __Pyx_XGOTREF(__pyx_t_36);
@@ -6509,8 +6509,8 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
                     #endif
                     __Pyx_PyThreadState_assign
                     __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -6518,7 +6518,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_10topics_least_squares(CYTHON_UNUSED PyObje
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_42, &__pyx_t_43, &__pyx_t_44);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41) < 0)) __Pyx_ErrFetch(&__pyx_t_39, &__pyx_t_40, &__pyx_t_41);
                     __Pyx_XGOTREF(__pyx_t_39);
@@ -7617,8 +7617,8 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
                     __pyx_gilstate_save = PyGILState_Ensure();
                     #endif
                     __Pyx_PyThreadState_assign
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
                     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
                     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
                     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7626,7 +7626,7 @@ static PyObject *__pyx_pf_3ctr_4_ctr_12topics_least_squares(CYTHON_UNUSED PyObje
                     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
                     if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_41, &__pyx_t_42, &__pyx_t_43);
                     if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_38, &__pyx_t_39, &__pyx_t_40) < 0)) __Pyx_ErrFetch(&__pyx_t_38, &__pyx_t_39, &__pyx_t_40);
                     __Pyx_XGOTREF(__pyx_t_38);
